@@ -1,13 +1,19 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-}
-
 body {
   min-height: 100vh;
+  font-family: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui, 'PingFang SC',
+    'Noto Sans CJK SC', 'Noto Sans SC', 'Heiti SC', 'Microsoft YaHei', 'DengXian', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+html:root {
+  --el-color-primary: #14b8a6; /* tral-500 */
+
+  --success-color: #67c23a;
+  --warn-color: #e6a23c;
+  --danger-color: #f56c6c;
+
+  --placeholder-color: #a8abb2;
+  --disabled-color: #c0c4cc;
 }
 
 a {

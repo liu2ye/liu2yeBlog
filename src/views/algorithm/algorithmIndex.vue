@@ -1,7 +1,6 @@
-<script setup>
-  
-</script>
+<script setup></script>
 <template>
+  <NavHeader />
   <div>算法</div>
 </template>
-<style lang='scss' scoped></style>
+<style lang="scss" scoped></style>
