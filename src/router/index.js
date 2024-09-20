@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import AlgorithmRouters from './algorithmRouters'
 import GameRoutes from './gameRoutes'
-console.log(GameRoutes)
+import ToolsRoutes from './toolsRoutes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,7 +36,9 @@ const router = createRouter({
       name: 'tools',
       component: () => import('../views/tools/ToolsIndex.vue')
     },
-    ...GameRoutes
+    ...AlgorithmRouters,
+    ...GameRoutes,
+    ...ToolsRoutes
   ]
 })
 
