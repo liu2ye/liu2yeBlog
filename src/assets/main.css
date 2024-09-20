@@ -7,6 +7,11 @@ body {
 
 html:root {
   --el-color-primary: #14b8a6; /* tral-500 */
+  --el-color-primary-light-3: #2dd4bf;
+  --el-color-primary-light-5: #5eead4;
+  --el-color-primary-light-7: #99f6e4;
+  --el-color-primary-light-8: #ccfbf1;
+  --el-color-primary-light-9: #f0fdfa;
 
   --success-color: #67c23a;
   --warn-color: #e6a23c;
@@ -19,4 +24,10 @@ html:root {
 a {
   text-decoration-line: none;
   color: inherit;
+}
+
+section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
 }
