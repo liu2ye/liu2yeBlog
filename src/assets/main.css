@@ -1,5 +1,6 @@
 body {
   min-height: 100vh;
+  margin: 0;
   font-family: 'Punctuation SC', 'Inter', ui-sans-serif, system-ui, 'PingFang SC',
     'Noto Sans CJK SC', 'Noto Sans SC', 'Heiti SC', 'Microsoft YaHei', 'DengXian', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7,7 +8,7 @@ body {
 
 html:root {
   --el-color-primary: #14b8a6; /* tral-500 */
-  --el-color-primary-light-3: #2dd4bf;
+  --el-color-primary-light-3: #030404;
   --el-color-primary-light-5: #5eead4;
   --el-color-primary-light-7: #99f6e4;
   --el-color-primary-light-8: #ccfbf1;
@@ -17,6 +18,7 @@ html:root {
   --warn-color: #e6a23c;
   --danger-color: #f56c6c;
 
+  --text-color: #666;
   --placeholder-color: #a8abb2;
   --disabled-color: #c0c4cc;
 }
@@ -29,5 +31,33 @@ a {
 section {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  color: #666;
+  color: var(--text-color);
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  --bgColor-muted: #042f2e;
+}
+
+.tip {
+  border-left: 4px solid var(--el-color-primary);
+  padding: 16px;
+  color: #333;
+  background-color: #eee;
+}
+
+.tip-warn {
+  border-left: 4px solid var(--warn-color);
+  padding: 16px;
+  color: #333;
+  background-color: #eee;
+}
+
+.tip-warn::before {
+  content: '警告';
+  color: var(--warn-color);
+  margin-right: 16px;
+  padding: 5px;
+  border-radius: 3px;
+  background: #ddd;
 }

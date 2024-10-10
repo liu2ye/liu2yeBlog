@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import 'github-markdown-css/github-markdown.css'
 import 'virtual:uno.css'
 import './assets/main.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'

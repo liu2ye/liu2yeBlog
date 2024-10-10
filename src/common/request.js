@@ -178,5 +178,21 @@ export async function getMdText(fileName, prefix = '/md/', suffix = '.md') {
   return res.data
 }
 
+export const imageServiceUrl = 'http://123.57.145.93:8180'
+
+export async function uploadImage(imageFile, owner = 'public', withImageUrl = false) {
+  const formData = new FormData()
+  formData.append('file', imageFile)
+  const imagePath = await axios.post(imageServiceUrl + `?owner=${owner}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
+
+  return withImageUrl ? getImageFullPath(imagePath) : imagePath
+}
+
+export function getImageFullPath(imagePath) {
+  return imageServiceUrl + '/img/' + imagePath
+}
+
 export const staticResourceUrl = import.meta.env.VITE_STATIC_RESOURCE
 export default request

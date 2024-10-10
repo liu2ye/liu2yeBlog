@@ -1,7 +1,7 @@
-export const GIRD_ROW = 6 // 网格行数
-export const GIRD_COL = 6 // 网格列数
-export const CELL_SIZE = 48 // 单元格大小
-export const BORDER_WIDTH = 4 // 边框宽度
+export const GIRD_ROW = 20 // 网格行数
+export const GIRD_COL = 20 // 网格列数
+export const CELL_SIZE = 20 // 单元格大小
+export const BORDER_WIDTH = 2 // 边框宽度
 export const BORDER_COLOR = '#fff'
 export const GRID_BACKAGE_COLOR = '#ddd'
 

@@ -3,13 +3,26 @@ const Tools = [
   {
     icon: 'Compass',
     title: '乱码推测',
-    desc: '对于未知编码的乱码进行推测复原'
+    desc: '对于未知编码的乱码进行推测复原',
+    route: '/tools/messyCodeRecover'
   },
   {
     icon: 'Grid',
     title: 'SVG网格',
     desc: '在svg中绘画出可自定义的网格, 用以演示二维的变化',
     route: '/tools/gridPainter'
+  },
+  {
+    icon: 'PictureFilled',
+    title: '图床服务',
+    desc: '提供免费图床服务，欢迎使用',
+    route: '/tools/imageService'
+  },
+  {
+    icon: 'Clock',
+    title: '时钟',
+    desc: '简易CSS时钟',
+    route: '/tools/simpleClock'
   }
 ]
 </script>

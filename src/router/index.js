@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AlgorithmRouters from './algorithmRouters'
 import GameRoutes from './gameRoutes'
 import ToolsRoutes from './toolsRoutes'
+import Markdown from '@/components/Markdown.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,33 +13,54 @@ const router = createRouter({
       component: () => import('../views/IndexHome.vue')
     },
     {
+      path: '/md/:fileName',
+      component: Markdown,
+      props: true
+    },
+    {
       path: '/algorithm',
-      name: 'algorithm',
+      name: 'algorithmHome',
       component: () => import('../views/algorithm/algorithmIndex.vue')
     },
     {
       path: '/blog',
-      name: 'blog',
+      name: 'blogHome',
       component: () => import('../views/blog/BlogIndex.vue')
     },
     {
+      path: '/blog/:blogPath',
+      name: 'blogContext',
+      props: true,
+      component: () => import('../views/blog/Blog.vue')
+    },
+    {
       path: '/game',
-      name: 'game',
+      name: 'gameHome',
       component: () => import('@/views/game/GameIndex.vue')
     },
     {
       path: '/proj',
-      name: 'proj',
+      name: 'projHome',
       component: () => import('../views/proj/ProjIndex.vue')
     },
     {
       path: '/tools',
-      name: 'tools',
+      name: 'toolsHome',
       component: () => import('../views/tools/ToolsIndex.vue')
     },
     ...AlgorithmRouters,
     ...GameRoutes,
-    ...ToolsRoutes
+    ...ToolsRoutes,
+    {
+      path: '/cv',
+      name: 'cv',
+      component: () => import('@/views/CV.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/NotFound.vue')
+    }
   ]
 })
 

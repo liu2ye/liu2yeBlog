@@ -1,7 +1,8 @@
 <script setup>
-import router from '@/router'
 import { useScreensStore } from '@/stores/screens'
+import { useRoute, useRouter } from 'vue-router'
 
+const router = useRouter()
 const props = defineProps(['title', 'desc', 'cover', 'link'])
 
 const titleLineClamp = useScreensStore().autoMapping({ sm: 2, md: 1 })
@@ -24,7 +25,7 @@ function clickHanlder() {
       </div>
       <div class="hidden md:block desc mt-1 text-gray-500">{{ props.desc }}</div>
     </div>
-    <img :src="props.cover" class="w-16 h-16 rd-sm" md="w-20 h-20 rd-md" />
+    <img v-if="props.cover" :src="props.cover" class="w-16 h-16 rd-sm" md="w-20 h-20 rd-md" />
   </div>
 </template>
 <style lang="scss" scoped>

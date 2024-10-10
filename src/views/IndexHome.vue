@@ -9,13 +9,14 @@ import { RouterLink } from 'vue-router'
     </section>
 
     <nav class="grid gap-4" grid="flow-row-dense cols-2" md="grid-cols-3" lg="grid-cols-5">
-      <RouterLink
-        ribbon-tip="整理中 "
+      <a
+        ribbon-tip="整理中"
         class="aspect-square p-10 b-rd-2 md:text-2xl hover:text-white shadow-xl transition-all ribbon"
         bg="teal-200 hover:teal-500"
         md="col-span-2 aspect-auto"
         lg="row-span-2"
-        >项目</RouterLink
+        to="/proj-disable"
+        >项目</a
       >
       <RouterLink
         class="aspect-square p-10 b-rd-2 md:text-2xl hover:text-white shadow-xl"
@@ -38,11 +39,11 @@ import { RouterLink } from 'vue-router'
         to="/tools"
         >工具</RouterLink
       >
-      <RouterLink
+      <a
         class="aspect-square p-10 b-rd-2 md:text-2xl hover:text-white shadow-xl ribbon"
         ribbon-tip="建设中"
         bg="teal-200 hover:teal-500"
-        >小游戏</RouterLink
+        >小游戏</a
       >
     </nav>
 

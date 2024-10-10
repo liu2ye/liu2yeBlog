@@ -33,6 +33,14 @@ export class GridPainter {
       }
       this.cellMap.push(row)
     }
+    this.cellTextMap = []
+    for (let i = 0; i < this.GRID_COL; i++) {
+      const row = []
+      for (let j = 0; j < this.GRID_ROW; j++) {
+        row.push(null)
+      }
+      this.cellTextMap.push(row)
+    }
 
     this.initGrid()
   }
@@ -70,10 +78,14 @@ export class GridPainter {
     // 画单元格
     this.initCell()
   }
-  drawCell(x, y, { color = '#868686' }) {
+  drawCell(x, y, { color = '#868686', text }) {
     const { GRID_ROW, GRID_COL, CELL_SIZE, BORDER_WIDTH } = this
     if (x >= GRID_COL || y >= GRID_ROW) {
-      throw Error('单元格位置不在网格中')
+      throw Error(`单元格位置不在网格中(${x},${y})`)
+    }
+
+    if (text) {
+      this.drawText(x, y, text)
     }
 
     if (this.cellMap[x][y]) {
@@ -93,6 +105,25 @@ export class GridPainter {
       this.onCellClick({ x, y })
     })
     this.cellMap[x][y] = path
+  }
+  drawText(x, y, text) {
+    if (this.cellTextMap[x][y]) {
+      this.cellTextMap[x][y].innerHTML = text
+      return
+    }
+
+    const { CELL_SIZE, BORDER_WIDTH } = this
+    const startX = (CELL_SIZE + BORDER_WIDTH) * x + BORDER_WIDTH
+    const startY = (CELL_SIZE + BORDER_WIDTH) * y + BORDER_WIDTH
+
+    const textHtml = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+    textHtml.setAttribute('x', startX + CELL_SIZE / 2)
+    textHtml.setAttribute('y', startY + CELL_SIZE / 2)
+    textHtml.setAttribute('font-size', CELL_SIZE / 2)
+    textHtml.setAttribute('text-anchor', 'middle')
+    textHtml.innerHTML = text
+    this.SVG.appendChild(textHtml)
+    this.cellTextMap[x][y] = textHtml
   }
   initCell() {
     for (let i = 0; i < this.GRID_COL; i++) {
@@ -142,15 +173,38 @@ export class AnimationGridPainter extends GridPainter {
       }
     }
   }
+  timer = null
   frameAnimation(frames, stepTime = 1000) {
     let currentFrame = 0
-    const timer = setInterval(() => {
+    this.timer = setInterval(() => {
       if (currentFrame == frames.length) {
-        clearInterval(timer)
+        this.stopAnimation()
         return
       }
       this.setFrame(frames[currentFrame])
       currentFrame++
     }, stepTime)
+  }
+
+  stopAnimation() {
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
+  }
+
+  cellAnimation(cells, stepTime = 500) {
+    return new Promise((resolve, reject) => {
+      let currentCell = 0
+      this.timer = setInterval(() => {
+        if (currentCell == cells.length) {
+          this.stopAnimation()
+          resolve()
+          return
+        }
+        const { x, y, color } = cells[currentCell]
+        this.drawCell(x, y, { color })
+        currentCell++
+      }, stepTime)
+    })
   }
 }

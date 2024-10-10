@@ -76,7 +76,7 @@ const profileSkill = {
           </el-descriptions-item>
         </el-descriptions>
 
-        <el-link type="primary" target="_blank" underline href="/public/liu2ye-简历.pdf ">👉我的简历.pdf</el-link>
+        <el-link type="primary" underline href="/cv">👉我的简历.pdf</el-link>
       </div>
     </div>
 
