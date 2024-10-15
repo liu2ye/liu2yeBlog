@@ -2,7 +2,6 @@ import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/paraiso-dark.css'
-import { ElMessage } from 'element-plus'
 
 export const marked = new Marked(
   markedHighlight({
