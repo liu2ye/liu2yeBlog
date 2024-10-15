@@ -2,6 +2,7 @@ import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/paraiso-dark.css'
+import { ElMessage } from 'element-plus'
 
 export const marked = new Marked(
   markedHighlight({
@@ -25,7 +26,7 @@ marked.use({
       const codeId = Math.floor(Math.random() * 100000000)
 
       const codeHeader = `<div class="flex items-center text-white bg-black/30 absolute top-0 right-0 uppercase font-bold text-xs rounded-bl-md px-2 py-1">
-        <span>${langString}</span> | <i class="el-icon cursor-pointer" onclick="copyBtnClick(${codeId})">${copyIcon}</i>
+        <span>${langString}</span> | <i style="width: 1em; height: 1em" class="cursor-pointer" onclick="copyBtnClick(${codeId})">${copyIcon}</i>
         </div>`
 
       return (
@@ -43,7 +44,42 @@ marked.use({
   }
 })
 
+function copyToClipboard(textToCopy) {
+  // navigator clipboard 需要https等安全上下文
+  if (navigator.clipboard && window.isSecureContext) {
+    // navigator clipboard 向剪贴板写文本
+    return navigator.clipboard.writeText(textToCopy)
+  } else {
+    // document.execCommand('copy') 向剪贴板写文本
+    let input = document.createElement('input')
+    input.style.position = 'fixed'
+    input.style.top = '-10000px'
+    input.style.zIndex = '-999'
+    document.body.appendChild(input)
+    input.value = textToCopy
+    input.focus()
+    input.select()
+    try {
+      let result = document.execCommand('copy')
+      return result && result !== 'unsuccessful'
+    } catch (e) {
+      throw new Error('浏览器不支持复制功能', e)
+    } finally {
+      document.body.removeChild(input)
+    }
+  }
+}
+
 window.copyBtnClick = function (codeId) {
   const codeText = document.getElementById(codeId).innerText
-  navigator.clipboard.writeText(codeText)
+  try {
+    if (copyToClipboard(codeText)) {
+      ElMessage.success('复制成功')
+    } else {
+      ElMessage.error('复制失败')
+    }
+  } catch (error) {
+    ElMessage.warning('当前浏览器不支持复制功能，请检查更新或更换其他浏览器操作')
+    console.error(error)
+  }
 }
