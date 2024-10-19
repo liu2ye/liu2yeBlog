@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AlgorithmRouters from './algorithmRouters'
 import GameRoutes from './gameRoutes'
 import ToolsRoutes from './toolsRoutes'
-import Markdown from '@/components/Markdown.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/md/:fileName',
-      component: Markdown,
+      component: () => import('@/components/Markdown.vue'),
       props: true
     },
     {

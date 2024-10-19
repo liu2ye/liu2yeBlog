@@ -9,6 +9,8 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import UnoCSS from 'unocss/vite'
 
+import { visualizer } from 'rollup-plugin-visualizer'
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -29,6 +31,9 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'html'
+    outDir: 'html',
+    rollupOptions: {
+      plugins: [visualizer({ open: true })]
+    }
   }
 })
